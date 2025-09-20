@@ -5,7 +5,7 @@ import sys
 import time
 import os  
 
-import st7735
+from ST7735 import ST7735
 
 try:
     # Transitional fix for breaking change in LTR559
@@ -53,20 +53,19 @@ pms5003 = PMS5003()
 time.sleep(1.0)
 
 # Create ST7735 LCD display class
-st7735 = st7735.ST7735(
+display = ST7735(
     port=0,
     cs=1,
-    dc="GPIO9",
-    backlight="GPIO12",
-    rotation=270,
-    spi_speed_hz=10000000
+    dc=9,            
+    backlight=12,    
+    rotation=270,    # can be 0/90/180/270
+    spi_speed_hz=10_000_000,
+    offset_left=0,
+    offset_top=0
 )
+display.begin()
 
-# Initialize display
-st7735.begin()
-
-WIDTH = st7735.width
-HEIGHT = st7735.height
+WIDTH, HEIGHT = display.width, display.height
 
 # Set up canvas and font
 img = Image.new("RGB", (WIDTH, HEIGHT), color=(0, 0, 0))
