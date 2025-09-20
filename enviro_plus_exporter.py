@@ -67,6 +67,19 @@ display.begin()
 
 WIDTH, HEIGHT = display.width, display.height
 
+def force_rotation(d, rot):
+    MADCTL = 0x36
+    MY, MX, MV, BGR = 0x80, 0x40, 0x20, 0x08
+    look = {
+        0:   (0x00 | BGR),
+        90:  (MV | MY | BGR),
+        180: (MX | MY | BGR),
+        270: (MV | MX | BGR),
+    }
+    d._write(MADCTL, [look[rot]])
+
+force_rotation(display, 270)
+
 # Set up canvas and font
 img = Image.new("RGB", (WIDTH, HEIGHT), color=(0, 0, 0))
 draw = ImageDraw.Draw(img)
@@ -180,7 +193,7 @@ def display_text(variable, data, unit):
         draw.rectangle((i, line_y, i + 1, line_y + 1), (0, 0, 0))
     # Write the text at the top in black
     draw.text((0, 0), message, font=font, fill=(0, 0, 0))
-    st7735.display(img)
+    display.display(img)
 
 
 # Saves the data to be used in the graphs later and prints to the log
@@ -213,7 +226,7 @@ def display_everything():
             if data_value > lim[j]:
                 rgb = palette[j + 1]
         draw.text((x, y), message, font=smallfont, fill=rgb)
-    st7735.display(img)
+    display.display(img)
 
 
 # Get the temperature of the CPU for compensation
