@@ -67,19 +67,6 @@ display.begin()
 
 WIDTH, HEIGHT = display.width, display.height
 
-def force_rotation(d, rot):
-    MADCTL = 0x36
-    MY, MX, MV, BGR = 0x80, 0x40, 0x20, 0x08
-    look = {
-        0:   (0x00 | BGR),
-        90:  (MV | MY | BGR),
-        180: (MX | MY | BGR),
-        270: (MV | MX | BGR),
-    }
-    d._write(MADCTL, [look[rot]])
-
-force_rotation(display, 270)
-
 # Set up canvas and font
 img = Image.new("RGB", (WIDTH, HEIGHT), color=(0, 0, 0))
 draw = ImageDraw.Draw(img)
