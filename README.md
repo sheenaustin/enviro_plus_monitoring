@@ -33,7 +33,7 @@ It collects temperature, pressure, humidity, light, gas, and particulate matter 
 Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/enviroplus-prometheus.git
+git clone https://github.com/sheenaustin/enviroplus-prometheus.git
 cd enviroplus-prometheus
 ````
 
