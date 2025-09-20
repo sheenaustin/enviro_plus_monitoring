@@ -1,0 +1,405 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "id": 100,
+      "panels": [],
+      "title": "Now (latest values)",
+      "type": "row"
+    },
+    {
+      "description": "CPU temperature from Raspberry Pi (for BME280 compensation context)",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": null }, { "color": "red", "value": 70 } ] },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": { "h": 4, "w": 4, "x": 0, "y": 1 },
+      "id": 101,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+        "text": {},
+        "wideLayout": true
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        {
+          "datasource": { "uid": "$datasource", "type": "prometheus" },
+          "expr": "enviro_cpu_temperature_c{job=~\"$job\", instance=~\"$instance\"}",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Temperature",
+      "type": "stat"
+    },
+    {
+      "description": "Compensated ambient temperature reported by your app",
+      "fieldConfig": {
+        "defaults": { "unit": "celsius", "thresholds": { "mode": "absolute", "steps": [ { "color": "green" }, { "color": "yellow", "value": 28 }, { "color": "red", "value": 35 } ] } },
+        "overrides": []
+      },
+      "gridPos": { "h": 4, "w": 4, "x": 4, "y": 1 },
+      "id": 102,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+        "text": {},
+        "wideLayout": true
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_temperature{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "{{instance}}", "refId": "A" }
+      ],
+      "title": "Ambient Temp",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "pressurehpa" }, "overrides": [] },
+      "gridPos": { "h": 4, "w": 4, "x": 8, "y": 1 },
+      "id": 103,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+        "text": {},
+        "wideLayout": true
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_pressure{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "{{instance}}", "refId": "A" }
+      ],
+      "title": "Pressure",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "percent" }, "overrides": [] },
+      "gridPos": { "h": 4, "w": 4, "x": 12, "y": 1 },
+      "id": 104,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+        "text": {},
+        "wideLayout": true
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_humidity{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "{{instance}}", "refId": "A" }
+      ],
+      "title": "Humidity",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "gridPos": { "h": 4, "w": 4, "x": 16, "y": 1 },
+      "id": 105,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+        "text": {},
+        "wideLayout": true
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_light{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "{{instance}}", "refId": "A" }
+      ],
+      "title": "Light (Lux)",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "gridPos": { "h": 4, "w": 4, "x": 20, "y": 1 },
+      "id": 106,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+        "text": {},
+        "wideLayout": true
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_proximity_raw{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "{{instance}}", "refId": "A" }
+      ],
+      "title": "Proximity",
+      "type": "stat"
+    },
+
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 5 },
+      "id": 200,
+      "panels": [],
+      "title": "Environment – Time Series",
+      "type": "row"
+    },
+    {
+      "fieldConfig": {
+        "defaults": { "unit": "celsius" },
+        "overrides": []
+      },
+      "gridPos": { "h": 10, "w": 12, "x": 0, "y": 6 },
+      "id": 201,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_temperature{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "Temp {{instance}}", "refId": "A" },
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_cpu_temperature_c{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "CPU {{instance}}", "refId": "B" }
+      ],
+      "title": "Temperature",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "pressurehpa" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 12, "x": 12, "y": 6 },
+      "id": 202,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_pressure{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "Pressure {{instance}}", "refId": "A" }
+      ],
+      "title": "Pressure",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "percent" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 12, "x": 0, "y": 16 },
+      "id": 203,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_humidity{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "Humidity {{instance}}", "refId": "A" }
+      ],
+      "title": "Humidity",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 12, "x": 12, "y": 16 },
+      "id": 204,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_light{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "Lux {{instance}}", "refId": "A" }
+      ],
+      "title": "Light (Lux)",
+      "type": "timeseries"
+    },
+
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 26 },
+      "id": 300,
+      "panels": [],
+      "title": "Gas (kΩ) – Time Series",
+      "type": "row"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 8, "x": 0, "y": 27 },
+      "id": 301,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_oxidised{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "Oxidised {{instance}}", "refId": "A" }
+      ],
+      "title": "Oxidised (kΩ)",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 8, "x": 8, "y": 27 },
+      "id": 302,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_reduced{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "Reduced {{instance}}", "refId": "A" }
+      ],
+      "title": "Reduced (kΩ)",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 8, "x": 16, "y": 27 },
+      "id": 303,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_nh3{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "NH3 {{instance}}", "refId": "A" }
+      ],
+      "title": "NH3 (kΩ)",
+      "type": "timeseries"
+    },
+
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 37 },
+      "id": 400,
+      "panels": [],
+      "title": "Particulates (µg/m³) – Time Series",
+      "type": "row"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 8, "x": 0, "y": 38 },
+      "id": 401,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_pm1{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "PM1 {{instance}}", "refId": "A" }
+      ],
+      "title": "PM1",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 8, "x": 8, "y": 38 },
+      "id": 402,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_pm25{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "PM2.5 {{instance}}", "refId": "A" }
+      ],
+      "title": "PM2.5",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": { "defaults": { "unit": "none" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 8, "x": 16, "y": 38 },
+      "id": 403,
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      },
+      "targets": [
+        { "datasource": { "uid": "$datasource", "type": "prometheus" }, "expr": "enviro_pm10{job=~\"$job\", instance=~\"$instance\"}", "legendFormat": "PM10 {{instance}}", "refId": "A" }
+      ],
+      "title": "PM10",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": [ "enviro", "prometheus", "raspberry-pi" ],
+  "templating": {
+    "list": [
+      {
+        "current": { "selected": false, "text": "Prometheus", "value": "Prometheus" },
+        "hide": 0,
+        "label": "Datasource",
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "type": "datasource"
+      },
+      {
+        "datasource": { "type": "prometheus", "uid": "$datasource" },
+        "definition": "label_values(enviro_temperature, job)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "job",
+        "multi": true,
+        "name": "job",
+        "query": { "query": "label_values(enviro_temperature, job)", "refId": "StandardVariableQuery" },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "query"
+      },
+      {
+        "datasource": { "type": "prometheus", "uid": "$datasource" },
+        "definition": "label_values(enviro_temperature{job=~\"$job\"}, instance)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "instance",
+        "multi": true,
+        "name": "instance",
+        "query": { "query": "label_values(enviro_temperature{job=~\"$job\"}, instance)", "refId": "StandardVariableQuery" },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "query"
+      }
+    ]
+  },
+  "time": { "from": "now-24h", "to": "now" },
+  "timepicker": {
+    "hidden": false,
+    "refresh_intervals": [ "5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h" ]
+  },
+  "timezone": "",
+  "title": "Enviro+ (Prometheus)",
+  "uid": "enviro-plus-prom",
+  "version": 1,
+  "weekStart": ""
+}
