@@ -33,14 +33,14 @@ It collects temperature, pressure, humidity, light, gas, and particulate matter 
 Clone this repository:
 
 ```bash
-git clone https://github.com/sheenaustin/enviroplus-prometheus.git
-cd enviroplus-prometheus
+git clone https://github.com/sheenaustin/enviro_plys_monitoring.git
+cd enviro_plus_monitoring
 ````
 
 Run the setup script:
 
 ```bash
-sudo bash setup_enviroplus.sh
+sudo bash setup.sh
 ```
 
 Reboot to apply SPI/I²C/UART changes:
