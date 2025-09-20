@@ -18,7 +18,7 @@ apt-get update
 DEBIAN_FRONTEND=noninteractive apt-get install -y \
   python3 python3-venv python3-pip python3-dev \
   python3-smbus i2c-tools git curl \
-  libatlas-base-dev libopenjp2-7 libtiff5 \
+  libatlas-base-dev libopenjp2-7 libtiff6 \
   libjpeg-dev zlib1g-dev libfreetype6 \
   fonts-dejavu-core
 
